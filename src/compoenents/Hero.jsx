@@ -14,12 +14,12 @@ const Hero = () => {
                 </div>
 
                 {/* main headline */}
-                <h1 className='text-3xl lg:text-5xl font-bold leading-snug'>
+                <h1 className='prata-regular text-3xl lg:text-5xl font-bold leading-snug'>
                     Latest Arrivals
                 </h1>
 
                 {/* subheading */}
-                <h6 className='text-base font-semibold text-pink-600 tracking-wide'>
+                <h6 className=' text-base font-semibold text-pink-600 tracking-wide'>
                     NEW PRODUCT DROP ✨
                 </h6>
 
