@@ -7,12 +7,13 @@ import menuIcon from './menu-icon.jpeg'
 import dropdownIcon from './dropdown-icon.jpeg'
 import Carousel1 from './Carousel1.png'
 import Carousel2 from './Carousel2.png'
+import heroVideo from './hero.mp4'
 import p1 from './p1.jpeg'
 import p2 from './p2.jpeg'
 import p3 from './p3.jpeg'
 
 export const assets={
-    logo , searchIcon , profileIcon , cartIcon , menuIcon , dropdownIcon , Carousel1 , Carousel2 ,p1 , p2 ,p3
+    logo , searchIcon , profileIcon , cartIcon , menuIcon , dropdownIcon , Carousel1 , Carousel2 , heroVideo,p1 , p2 ,p3
 }
 
 export const products=[
