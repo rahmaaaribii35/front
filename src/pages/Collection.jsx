@@ -5,7 +5,7 @@ import Title from '../compoenents/Title';
 import ProductItem from '../compoenents/ProductItem';
 
 const Collection = () => {
-  const { products } = useContext(ShopContext);
+  const { products , search , showSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]); // lowercase for convention
@@ -23,6 +23,10 @@ const Collection = () => {
   // Apply category filter
   const applyFilter = () => {
     let productsCopy = products.slice();
+
+    if(showSearch && search){
+      productsCopy=productsCopy.filter(item=>item.name.toLowerCase().includes(search.toLowerCase()))
+    }
 
     if (category.length > 0) {
       productsCopy = productsCopy.filter((item) => category.includes(item.category)); // lowercase 'category'
@@ -54,7 +58,7 @@ const Collection = () => {
   // Update products when category changes
   useEffect(() => {
     applyFilter();
-  }, [category]);
+  }, [category , search ,showSearch]);
 
   useEffect(() => {
     sortProducts();

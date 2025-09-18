@@ -1,19 +1,33 @@
-import React, { useState } from 'react'
-import { assets } from '../assets/assets'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useContext, useState } from 'react';
+import { assets } from '../assets/assets';
+import { Link, NavLink } from 'react-router-dom';
+import { ShopContext } from '../context/ShopContext';
 
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
+  const { showSearch, setShowSearch, setSearch } = useContext(ShopContext);
+
+  // Handle clicking the search icon in navbar
+  const handleToggleSearch = () => {
+    if (showSearch) {
+      // If search bar is visible, hide it and clear input
+      setSearch('');
+      setShowSearch(false);
+    } else {
+      // Otherwise, just show it
+      setShowSearch(true);
+    }
+  };
 
   return (
-    <div className='flex items-center justify-between py-5 font-medium'>
+    <div className='flex items-center justify-between py-5 font-medium relative'>
 
       {/* logo */}
       <img src={assets.logo} className="w-[150px] h-auto ml-[30px]" alt="logo" />
 
       {/* menus */}
       <ul className='flex gap-5 text-sm text-gray-700'>
-        <NavLink to="/" className='flex flex-col items-center gap-1' >
+        <NavLink to="/" className='flex flex-col items-center gap-1'>
           <p>HOME</p>
           <hr className='w-1/2 border-none h-[1.5px] bg-gray-700 hidden'/>
         </NavLink>
@@ -21,7 +35,7 @@ const NavBar = () => {
           <p>COLLECTION</p>
           <hr className='w-1/2 border-none h-[1.5px] bg-gray-700 hidden'/>
         </NavLink>
-        <NavLink to="/about" className='flex flex-col items-center gap-1 '>
+        <NavLink to="/about" className='flex flex-col items-center gap-1'>
           <p>ABOUT</p>
           <hr className='w-1/2 border-none h-[1.5px] bg-gray-700 hidden'/>
         </NavLink>
@@ -34,7 +48,12 @@ const NavBar = () => {
       {/* search & profile */}
       <div className='flex items-center gap-6'>
         {/* search icon */}
-        <img src={assets.searchIcon} className='w-12 cursor-pointer' alt="search icon"/>
+        <img
+          onClick={handleToggleSearch}
+          src={assets.searchIcon}
+          className='w-12 cursor-pointer'
+          alt="search icon"
+        />
 
         {/* profile icon */}
         <div className='group relative'>
@@ -52,11 +71,15 @@ const NavBar = () => {
         {/* cart icon */}
         <Link to='/cart' className='relative'>
           <img className='w-8 min-w-2' src={assets.cartIcon} alt="cart icon" />
-          {/* cart item count */}
           <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>10</p>
         </Link>
 
-        <img onClick={() => setVisible(true)} src={assets.menuIcon} className='w-5 cursor-pointer sm:hidden' alt="menu icon"/>
+        <img
+          onClick={() => setVisible(true)}
+          src={assets.menuIcon}
+          className='w-5 cursor-pointer sm:hidden'
+          alt="menu icon"
+        />
       </div>
 
       {/* sidebar menu for small screens */}
@@ -73,7 +96,7 @@ const NavBar = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
