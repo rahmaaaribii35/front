@@ -47,12 +47,17 @@ import p103 from './p10-3.jpg'
 import p104 from './p10-4.mp4'
 import p105 from './p10-5.jpg'
 
+import exchangeIcon from './exchange-icon.jpeg'
+import qualityIcon from './quality-icon.jpeg'
+import supportIcon from './support-icon.jpeg'
+
+
 
 
 
 
 export const assets={
-    logo , searchIcon , profileIcon , cartIcon , menuIcon , dropdownIcon , Carousel1 , Carousel2 , heroVideo, p11 , p12 , p13 , p14 , p15 , p16 , p21 , p22 , p23 , p24 , p25 , p31 , p32 , p33 , p34  , p41 , p42 , p43 , p51 , p52 , p53 , p61 , p62 , p71 , p72 , p73 , p81 , p82 , p83 , p91 , p92 , p93 , p94 , p101 , p102 , p103 , p104 , p105
+    logo , searchIcon , profileIcon , cartIcon , menuIcon , dropdownIcon , Carousel1 , Carousel2 , heroVideo, p11 , p12 , p13 , p14 , p15 , p16 , p21 , p22 , p23 , p24 , p25 , p31 , p32 , p33 , p34  , p41 , p42 , p43 , p51 , p52 , p53 , p61 , p62 , p71 , p72 , p73 , p81 , p82 , p83 , p91 , p92 , p93 , p94 , p101 , p102 , p103 , p104 , p105 , exchangeIcon , qualityIcon , supportIcon
 }
 
 export const products=[
