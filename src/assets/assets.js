@@ -65,6 +65,7 @@ export const products=[
         quantity: 50,
         category: "face",
         images: [p11 ,p12 , p13, p14, p15, p16 ],
+        bestseller: true
     },
     {
         _id: 2,
@@ -73,7 +74,8 @@ export const products=[
         price: 12.99,
         quantity: 40,
         category: "lips",
-        images: [p21, p22 , p23, p24, p25]
+        images: [p21, p22 , p23, p24, p25],
+        bestseller: false
     },
     {
         _id: 3,
@@ -82,7 +84,8 @@ export const products=[
         price: 9.99,
         quantity: 60,
         category: "hair",
-        images: [p31 , p32 , p33 ,p34]
+        images: [p31 , p32 , p33 ,p34],
+        bestseller:false
    },
    {
         _id: 4,
@@ -91,7 +94,8 @@ export const products=[
         price: 25.99,
         quantity: 30,
         category: "face",
-        images: [p41 , p42 , p43]
+        images: [p41 , p42 , p43],
+        bestseller:true
     },
     {
         _id: 5,
@@ -100,7 +104,8 @@ export const products=[
         price: 10.99,
         quantity: 30,
         category: "lips",
-        images: [p51 , p52 , p53]
+        images: [p51 , p52 , p53],
+        bestseller:false
     },
     {
         _id: 6,
@@ -109,7 +114,8 @@ export const products=[
         price: 17.99,
         quantity: 30,
         category: "face",
-        images: [p61 , p62 ]
+        images: [p61 , p62 ],
+        bestseller:true
     },
     {
         _id: 7,
@@ -118,7 +124,8 @@ export const products=[
         price: 31.5,
         quantity: 45,
         category: "eye",
-        images: [p71 , p72 , p73 ]
+        images: [p71 , p72 , p73 ],
+        bestseller:false
     },
     {
         _id: 8,
@@ -127,7 +134,8 @@ export const products=[
         price: 21,
         quantity: 21,
         category: "face",
-        images: [p81 , p82 , p83 ]
+        images: [p81 , p82 , p83 ],
+        bestseller:false
     },
     {
         _id: 9,
@@ -136,7 +144,8 @@ export const products=[
         price: 17.5,
         quantity: 33,
         category: "eye",
-        images: [p91 , p92 , p93 , p94]
+        images: [p91 , p92 , p93 , p94],
+        bestseller:true
     },
     {
         _id: 10,
@@ -145,7 +154,8 @@ export const products=[
         price: 17.5,
         quantity: 19,
         category: "face",
-        images: [p101 , p102 , p103 , p104 , p105]
+        images: [p101 , p102 , p103 , p104 , p105],
+        bestseller:true
     },
 
 
