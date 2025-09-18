@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
 
-const Header = () => {
+const Carousel = () => {
   const images = [assets.Carousel1, assets.Carousel2];
   const [current, setCurrent] = useState(0);
 
@@ -26,16 +26,16 @@ const Header = () => {
         />
       ))}
 
-      {/* Navigation buttons */}
+      {/* Navigation buttons - black text, no background */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-pink-500 text-white text-3xl font-bold px-3 py-1 rounded-full shadow hover:bg-pink-600 transition"
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-black text-4xl font-bold px-2 py-1 hover:opacity-70 transition-opacity"
       >
         &#10094;
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-pink-500 text-white text-3xl font-bold px-3 py-1 rounded-full shadow hover:bg-pink-600 transition"
+        className="absolute right-4 top-1/2 -translate-y-1/2 text-black text-4xl font-bold px-2 py-1 hover:opacity-70 transition-opacity"
       >
         &#10095;
       </button>
@@ -55,4 +55,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Carousel;
