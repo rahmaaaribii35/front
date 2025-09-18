@@ -1,12 +1,14 @@
 import React from 'react'
 import Header from '../compoenents/Header'
 import Hero from '../compoenents/Hero'
+import LatestCollection from '../compoenents/LatestCollection'
 
 const Home = () => {
   return (
     <div>
-      <Header/>
+      <br/><br/><Header/> <br/> <br/> <br/>
       <Hero/>
+      <LatestCollection/>
     </div>
   )
 }
