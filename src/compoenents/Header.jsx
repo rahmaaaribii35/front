@@ -14,31 +14,43 @@ const Header = () => {
   };
 
   return (
-    <div className="relative w-full h-[80vh] overflow-hidden rounded-xl">
+    <div className="relative w-full h-[80vh] overflow-hidden rounded-2xl border border-pink-300 bg-pink-50 shadow-md">
       {images.map((img, index) => (
         <img
           key={index}
           src={img}
           alt={`Slide ${index + 1}`}
-          className={`absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-700 ${
+          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700 ${
             index === current ? "opacity-100" : "opacity-0"
           }`}
         />
       ))}
 
-      {/* Navigation buttons: transparent background, black arrows */}
+      {/* Navigation buttons */}
       <button
         onClick={prevSlide}
-        className="absolute left-2 top-1/2 -translate-y-1/2 text-black text-4xl font-bold"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-pink-500 text-white text-3xl font-bold px-3 py-1 rounded-full shadow hover:bg-pink-600 transition"
       >
         &#10094;
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-2 top-1/2 -translate-y-1/2 text-black text-4xl font-bold"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-pink-500 text-white text-3xl font-bold px-3 py-1 rounded-full shadow hover:bg-pink-600 transition"
       >
         &#10095;
       </button>
+
+      {/* Dots indicator */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <div
+            key={index}
+            className={`w-3 h-3 rounded-full ${
+              index === current ? "bg-pink-600" : "bg-pink-300"
+            }`}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 };
