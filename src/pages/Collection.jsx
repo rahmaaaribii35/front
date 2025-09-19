@@ -5,11 +5,11 @@ import Title from '../compoenents/Title';
 import ProductItem from '../compoenents/ProductItem';
 
 const Collection = () => {
-  const { products , search , showSearch } = useContext(ShopContext);
+  const { products, search, showSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]); // lowercase for convention
-  const [sortType , setSortType]=useState('relevant');
+  const [sortType, setSortType] = useState('relevant');
 
   // Toggle category selection
   const toggleCategory = (e) => {
@@ -24,8 +24,8 @@ const Collection = () => {
   const applyFilter = () => {
     let productsCopy = products.slice();
 
-    if(showSearch && search){
-      productsCopy=productsCopy.filter(item=>item.name.toLowerCase().includes(search.toLowerCase()))
+    if (showSearch && search) {
+      productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
     }
 
     if (category.length > 0) {
@@ -35,30 +35,29 @@ const Collection = () => {
     setFilterProducts(productsCopy);
   };
 
-  const sortProducts=()=>{
-
+  const sortProducts = () => {
     let fpCopy = filterProducts.slice();
 
-    switch ( sortType){
-        case 'low-high' :
-          serFilterProducts(fpCopy.sort((a,b)=>(a.price-b.price)))
-          break;
+    switch (sortType) {
+      case 'low-high':
+        setFilterProducts(fpCopy.sort((a, b) => a.price - b.price));
+        break;
 
-        case 'high-low' :
-          setFilterProducts(fpCopy.sort((a,b)=>(b.price-a.price)));
-          break;
+      case 'high-low':
+        setFilterProducts(fpCopy.sort((a, b) => b.price - a.price));
+        break;
 
-        default : 
-          applyFilter();
-          break;
+      default:
+        applyFilter();
+        break;
     }
+  };
 
-  }
 
   // Update products when category changes
   useEffect(() => {
     applyFilter();
-  }, [category , search ,showSearch]);
+  }, [category, search, showSearch]);
 
   useEffect(() => {
     sortProducts();
@@ -109,7 +108,7 @@ const Collection = () => {
           <Title text1='ALL' text2='COLLECTIONS' />
 
           {/* Product sort */}
-          <select onChange={(e)=>setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2'>
+          <select onChange={(e) => setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2'>
             <option value='relevant'>Sort by : Relevant</option>
             <option value='low-high'>Sort by : Low to High</option>
             <option value='high-low'>Sort by : High to Low</option>
