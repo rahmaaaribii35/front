@@ -6,9 +6,10 @@ import RelatedProducts from '../compoenents/RelatedProducts';
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency , addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
+  const [size,setSize]=useState('')
 
   const fetchProductData = () => {
     products.forEach((item) => {
@@ -96,7 +97,7 @@ const Product = () => {
 
           <p className='text-gray-600 mt-4 md:w-4/5 leading-relaxed'>{productData.description}</p>
 
-          <button className='bg-pink-600 text-white px-8 py-3 mt-6 rounded-md hover:bg-pink-700 transition'>
+          <button onClick={()=>addToCart(productData._id,size)} className='bg-pink-600 text-white px-8 py-3 mt-6 rounded-md hover:bg-pink-700 transition'>
             ADD TO CART
           </button>
 

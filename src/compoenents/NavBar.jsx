@@ -5,7 +5,7 @@ import { ShopContext } from '../context/ShopContext';
 
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
-  const { showSearch, setShowSearch, setSearch } = useContext(ShopContext);
+  const { showSearch, setShowSearch, setSearch,getCartCount } = useContext(ShopContext);
 
   // Handle clicking the search icon in navbar
   const handleToggleSearch = () => {
@@ -71,7 +71,7 @@ const NavBar = () => {
         {/* cart icon */}
         <Link to='/cart' className='relative'>
           <img className='w-8 min-w-2' src={assets.cartIcon} alt="cart icon" />
-          <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>10</p>
+          <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
         </Link>
 
         <img
