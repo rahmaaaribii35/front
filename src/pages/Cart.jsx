@@ -6,7 +6,7 @@ import CartTotal from '../compoenents/CartTotal';
 import { toast } from 'react-toastify';
 
 const Cart = () => {
-  const { products, cartItems, currency, updateQuantity } = useContext(ShopContext);
+  const { products, cartItems, currency, updateQuantity ,navigate} = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const Cart = () => {
       <div className='flex justify-end mt-10'>
         <div className='w-full sm:w-[450px]'>
           <CartTotal />
-          <button className='w-full bg-pink-500 text-white py-3 mt-6 rounded-lg font-medium hover:bg-pink-600 transition'>
+          <button onClick={()=>navigate('/place-order')} className='w-full bg-pink-500 text-white py-3 mt-6 rounded-lg font-medium hover:bg-pink-600 transition'>
             PROCEED TO CHECKOUT
           </button>
         </div>
