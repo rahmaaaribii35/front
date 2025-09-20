@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Title from '../compoenents/Title';
 import CartTotal from '../compoenents/CartTotal';
 import { assets } from '../assets/assets';
+import { ShopContext } from '../context/ShopContext';
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState('cod');
+
+  const{navigate}=useContext(ShopContext);
 
   return (
     <div className='flex flex-col sm:flex-row justify-between gap-6 pt-5 sm:pt-14 min-h-[80vh] border-t border-pink-200'>
@@ -97,7 +100,7 @@ const PlaceOrder = () => {
 
 
           <div className='w-full text-end mt-8'>
-            <button className='bg-pink-500 hover:bg-pink-600 text-white px-16 py-3 text-sm rounded-lg transition-colors'>
+            <button onClick={()=>navigate('/orders')} className='bg-pink-500 hover:bg-pink-600 text-white px-16 py-3 text-sm rounded-lg transition-colors'>
               PLACE ORDER ({method.toUpperCase()})
             </button>
           </div>
