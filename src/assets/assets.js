@@ -134,10 +134,11 @@ import visaIcon from './visa-icon.jpeg'
 import paypallIcon from './paypall-icon.jpeg'
 import creditcartIcon from './creditcart-icon.jpeg'
 import aboutIcon from './about.jpeg'
+import contactVID from './contact.mp4'
 
 
 export const assets={
-    logo , searchIcon , profileIcon , cartIcon , menuIcon , dropdownIcon , Carousel1 , Carousel2 , heroVideo,visaIcon,paypallIcon,creditcartIcon,aboutIcon, p11 , p12 , p13 , p14 , p15 , p16 , p21 , p22 , p23 , p24 , p25 , p31 , p32 , p33 , p34  , p41 , p42 , p43 , p51 , p52 , p53 , p61 , p62 , p71 , p72 , p73 , p81 , p82 , p83 , p91 , p92 , p93 , p94 , p101 , p102 , p103 , p104 , p105 ,p111 ,p112 ,p113 , p114,p115 ,p121 ,p122,p123,p124,p125,p126 , p131,p132,p133,p134 ,p141,p142,p151,p152,p161,p162,p163,p171,p172,p173,p181,p182,p191,p192,p193,p194,p195,p201,p202,p203,p204,p205,p211,p212,p213, p221,p222,p231,p232,p233,p234,p241,p242,p243,p244,p251,p252,p253,p261,p262,p263,p271,p272,p273,p274,p275,p264,p265,p271,p272,p273,p274,p275,p281,p282,p283,p291,p292,p293,p294,p301,p302,p303,p304, exchangeIcon , qualityIcon , supportIcon , crossIcon,starIcon, binIcon
+    logo , searchIcon , profileIcon , cartIcon , menuIcon , dropdownIcon , Carousel1 , Carousel2 , heroVideo,visaIcon,paypallIcon,creditcartIcon,aboutIcon,contactVID, p11 , p12 , p13 , p14 , p15 , p16 , p21 , p22 , p23 , p24 , p25 , p31 , p32 , p33 , p34  , p41 , p42 , p43 , p51 , p52 , p53 , p61 , p62 , p71 , p72 , p73 , p81 , p82 , p83 , p91 , p92 , p93 , p94 , p101 , p102 , p103 , p104 , p105 ,p111 ,p112 ,p113 , p114,p115 ,p121 ,p122,p123,p124,p125,p126 , p131,p132,p133,p134 ,p141,p142,p151,p152,p161,p162,p163,p171,p172,p173,p181,p182,p191,p192,p193,p194,p195,p201,p202,p203,p204,p205,p211,p212,p213, p221,p222,p231,p232,p233,p234,p241,p242,p243,p244,p251,p252,p253,p261,p262,p263,p271,p272,p273,p274,p275,p264,p265,p271,p272,p273,p274,p275,p281,p282,p283,p291,p292,p293,p294,p301,p302,p303,p304, exchangeIcon , qualityIcon , supportIcon , crossIcon,starIcon, binIcon
 }
 
 export const products=[
