@@ -23,7 +23,9 @@ const NavBar = () => {
     <div className='flex items-center justify-between py-5 font-medium relative'>
 
       {/* logo */}
-      <img src={assets.logo} className="w-[150px] h-auto ml-[30px]" alt="logo" />
+      <Link to="/">
+       <img src={assets.logo} className="w-[150px] h-auto ml-[30px]" alt="logo" />
+      </Link>
 
       {/* menus */}
       <ul className='flex gap-5 text-sm text-gray-700'>
