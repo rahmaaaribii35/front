@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { products } from '../../assets/assets';
 
+
 const Dashboard = () => {
   const [stats, setStats] = useState({
     totalUsers: 0,
@@ -81,7 +82,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-[1400px] mx-auto">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
@@ -177,33 +178,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button className="flex items-center space-x-3 p-4 bg-pink-50 hover:bg-pink-100 rounded-lg transition">
-            <span className="text-2xl">➕</span>
-            <div className="text-left">
-              <p className="font-medium text-gray-900">Add Product</p>
-              <p className="text-sm text-gray-500">Create new product</p>
-            </div>
-          </button>
-          <button className="flex items-center space-x-3 p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition">
-            <span className="text-2xl">👥</span>
-            <div className="text-left">
-              <p className="font-medium text-gray-900">Manage Users</p>
-              <p className="text-sm text-gray-500">View all users</p>
-            </div>
-          </button>
-          <button className="flex items-center space-x-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition">
-            <span className="text-2xl">📊</span>
-            <div className="text-left">
-              <p className="font-medium text-gray-900">View Reports</p>
-              <p className="text-sm text-gray-500">Analytics & insights</p>
-            </div>
-          </button>
-        </div>
-      </div>
+
     </div>
   );
 };
