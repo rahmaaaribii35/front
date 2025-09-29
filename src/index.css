@@ -27,3 +27,7 @@ a.active hr{
     color:white
   }
 }
+
+.z-10{
+  z-index:50;
+}
