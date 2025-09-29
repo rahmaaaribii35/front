@@ -14,17 +14,28 @@ import Footer from './compoenents/footer'
 import SearchBar from './compoenents/SearchBar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AdminLayout from './pages/admin/adminLayout'
+import Dashboard from './pages/admin/Dashboard'
+import Users from './pages/admin/Users'
+import Products from './pages/admin/Products'
+import Order from './pages/admin/Order'
+import { useAuth } from './context/AuthContext'
 
 
 
 
 const App = () => {
+
+  const { user } = useAuth()
+  const isAdmin = user?.role === 'admin'
+
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
       
       <ToastContainer/>
-      <NavBar/>
-      <SearchBar/>
+      {/* Only show Navbar and SearchBar for non-admin users */}
+      {!isAdmin && <NavBar />}
+      {!isAdmin && <SearchBar />}
 
       <Routes>
         <Route path ='/' element={<Home/>} />
@@ -37,9 +48,19 @@ const App = () => {
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/orders' element={<Orders />} />
         
+        
+        <Route path="/admin" element={<AdminLayout/>}>
+            <Route path="dashboard" element={<Dashboard />} /> 
+            <Route path='users' element={<Users/>}/>
+            <Route path="products" element={<Products/>}/>
+            <Route path="order" element={<Order/>}/>
+        </Route>
+
+
       </Routes>
 
-      <Footer/>
+      {/* Only show Footer for non-admin users */}
+      {!isAdmin && <Footer />}
 
     </div>
   )

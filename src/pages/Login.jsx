@@ -1,10 +1,55 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'   // ADDED: for redirect after login
+import { useAuth } from '../context/AuthContext' 
+
 
 const Login = () => {
-  const [currentState, setCurrentState] = useState('Sign Up')
+  const [currentState, setCurrentState] = useState('Login')
+  
+  //ADDED: state for input fields
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  // ADDED: hook to redirect user
+  const navigate = useNavigate()
+
+    // Get setUser from AuthContext
+  const { setUser } = useAuth() 
+
+  // ADDED: form submission handler
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    // ADDED: temporary fake users (replace with backend later)
+    const users = [
+      { email: 'admin@test.com', password: '1234', role: 'admin' },
+      { email: 'user@test.com', password: 'abcd', role: 'user' },
+    ]
+
+    // ADDED: check credentials
+    const found = users.find(u => u.email === email && u.password === password)
+
+    if (found) {
+      //  Save logged-in user in context
+      setUser(found)
+      
+      alert(`Welcome ${found.role}`)
+
+      // ADDED: redirect based on role
+      if (found.role === "admin") {
+        navigate('/admin/dashboard')   // go to admin page
+      } else {
+        navigate('/')   // go to home for normal users
+      }
+
+    } else {
+      alert("Invalid credentials")
+    }
+  }
+
 
   return (
-    <form 
+    <form   onSubmit={handleSubmit}   // CHANGED: added submit handler
       className="flex flex-col items-center w-[90%] sm:max-w-md m-auto mt-16 gap-5 p-8 rounded-2xl shadow-lg bg-gradient-to-b from-pink-50 to-white text-gray-700"
     >
       {/* Header */}
@@ -17,8 +62,10 @@ const Login = () => {
       {currentState === 'Login' ? null : (
         <input type="text" placeholder="Name" required className="w-full px-4 py-3 rounded-xl border border-pink-200 focus:ring-2 focus:ring-pink-300 outline-none" />
       )}
-      <input type="email" placeholder="Email" required className="w-full px-4 py-3 rounded-xl border border-pink-200 focus:ring-2 focus:ring-pink-300 outline-none" />
-      <input type="password" placeholder="Password" require className="w-full px-4 py-3 rounded-xl border border-pink-200 focus:ring-2 focus:ring-pink-300 outline-none"/>
+      {/* CHANGED: controlled input for email */}
+      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}  required className="w-full px-4 py-3 rounded-xl border border-pink-200 focus:ring-2 focus:ring-pink-300 outline-none" />
+      {/*CHANGED: controlled input for password */}
+      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}  require className="w-full px-4 py-3 rounded-xl border border-pink-200 focus:ring-2 focus:ring-pink-300 outline-none"/>
 
       {/* Options */}
       <div className="w-full flex justify-between text-sm text-gray-500">
@@ -31,7 +78,8 @@ const Login = () => {
       </div>
 
       {/* Button */}
-      <button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-medium px-6 py-3 rounded-xl mt-4 shadow-md transition"> {currentState === 'Login' ? 'Sign In' : 'Sign Up'} </button>
+      {/*CHANGED: made sure button triggers form submit*/}
+      <button type="submit"  className="w-full bg-pink-500 hover:bg-pink-600 text-white font-medium px-6 py-3 rounded-xl mt-4 shadow-md transition"> {currentState === 'Login' ? 'Sign In' : 'Sign Up'} </button>
     </form>
   )
 }
