@@ -5,8 +5,6 @@ const Users = () => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRole, setFilterRole] = useState('all');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(10);
   const [showModal, setShowModal] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,16 +29,15 @@ const Users = () => {
 
   const fetchUsers = async () => {
     setLoading(true);
-    // Mock data - replace with actual API call
     const mockUsers = [
-      { id: 1, name: 'Sarah Johnson', email: 'sarah@example.com', role: 'user', status: 'active', joinDate: '2024-01-15' },
-      { id: 2, name: 'Mike Chen', email: 'mike@example.com', role: 'user', status: 'active', joinDate: '2024-01-10' },
-      { id: 3, name: 'Emma Wilson', email: 'emma@example.com', role: 'admin', status: 'active', joinDate: '2024-01-05' },
-      { id: 4, name: 'David Brown', email: 'david@example.com', role: 'user', status: 'inactive', joinDate: '2024-01-01' },
-      { id: 5, name: 'Lisa Garcia', email: 'lisa@example.com', role: 'user', status: 'active', joinDate: '2023-12-28' },
-      { id: 6, name: 'John Smith', email: 'john@example.com', role: 'user', status: 'active', joinDate: '2023-12-25' },
-      { id: 7, name: 'Maria Rodriguez', email: 'maria@example.com', role: 'user', status: 'active', joinDate: '2023-12-20' },
-      { id: 8, name: 'Alex Thompson', email: 'alex@example.com', role: 'user', status: 'inactive', joinDate: '2023-12-15' }
+      { id: 1, name: 'Sarah Johnson', email: 'sarah@example.com', role: 'user', status: 'active', joinDate: '2024-01-15', avatar: 'https://randomuser.me/api/portraits/women/1.jpg' },
+      { id: 2, name: 'Mike Chen', email: 'mike@example.com', role: 'user', status: 'active', joinDate: '2024-01-10', avatar: 'https://randomuser.me/api/portraits/men/2.jpg' },
+      { id: 3, name: 'Emma Wilson', email: 'emma@example.com', role: 'admin', status: 'active', joinDate: '2024-01-05', avatar: 'https://randomuser.me/api/portraits/women/3.jpg' },
+      { id: 4, name: 'David Brown', email: 'david@example.com', role: 'user', status: 'inactive', joinDate: '2024-01-01', avatar: 'https://randomuser.me/api/portraits/men/4.jpg' },
+      { id: 5, name: 'Lisa Garcia', email: 'lisa@example.com', role: 'user', status: 'active', joinDate: '2023-12-28', avatar: 'https://randomuser.me/api/portraits/women/5.jpg' },
+      { id: 6, name: 'John Smith', email: 'john@example.com', role: 'user', status: 'active', joinDate: '2023-12-25', avatar: 'https://randomuser.me/api/portraits/men/6.jpg' },
+      { id: 7, name: 'Maria Rodriguez', email: 'maria@example.com', role: 'user', status: 'active', joinDate: '2023-12-20', avatar: 'https://randomuser.me/api/portraits/women/7.jpg' },
+      { id: 8, name: 'Alex Thompson', email: 'alex@example.com', role: 'user', status: 'inactive', joinDate: '2023-12-15', avatar: 'https://randomuser.me/api/portraits/men/8.jpg' }
     ];
 
     setTimeout(() => {
@@ -64,7 +61,6 @@ const Users = () => {
     }
 
     setFilteredUsers(filtered);
-    setCurrentPage(1);
   };
 
   const handleAddUser = () => {
@@ -101,14 +97,12 @@ const Users = () => {
     e.preventDefault();
     
     if (editingUser) {
-      // Update existing user
       setUsers(users.map(user => 
         user.id === editingUser.id 
           ? { ...user, ...formData }
           : user
       ));
     } else {
-      // Add new user
       const newUser = {
         id: Math.max(...users.map(u => u.id)) + 1,
         ...formData,
@@ -127,12 +121,6 @@ const Users = () => {
       [e.target.name]: e.target.value
     });
   };
-
-  // Pagination
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
-  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
   const getStatusColor = (status) => {
     return status === 'active' 
@@ -156,7 +144,6 @@ const Users = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold text-gray-900">Manage Users</h1>
         <button
@@ -167,7 +154,6 @@ const Users = () => {
         </button>
       </div>
 
-      {/* Filters */}
       <div className="bg-white rounded-lg shadow-md p-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
@@ -206,7 +192,6 @@ const Users = () => {
         </div>
       </div>
 
-      {/* Users Table */}
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
@@ -220,14 +205,12 @@ const Users = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {currentUsers.map((user) => (
+              {filteredUsers.map((user) => (
                 <tr key={user.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
-                        <span className="text-pink-600 font-semibold">
-                          {user.name.split(' ').map(n => n[0]).join('')}
-                        </span>
+                      <div className="w-10 h-10 rounded-full overflow-hidden">
+                        <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
                       </div>
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900">{user.name}</div>
@@ -269,57 +252,8 @@ const Users = () => {
             </tbody>
           </table>
         </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-            <div className="flex-1 flex justify-between sm:hidden">
-              <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
-              >
-                Previous
-              </button>
-              <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
-              >
-                Next
-              </button>
-            </div>
-            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm text-gray-700">
-                  Showing <span className="font-medium">{indexOfFirstUser + 1}</span> to{' '}
-                  <span className="font-medium">{Math.min(indexOfLastUser, filteredUsers.length)}</span> of{' '}
-                  <span className="font-medium">{filteredUsers.length}</span> results
-                </p>
-              </div>
-              <div>
-                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                        page === currentPage
-                          ? 'z-10 bg-pink-50 border-pink-500 text-pink-600'
-                          : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
-                </nav>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Add/Edit User Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
@@ -393,7 +327,6 @@ const Users = () => {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
       {showDeleteModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
