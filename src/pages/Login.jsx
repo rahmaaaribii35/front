@@ -22,8 +22,8 @@ const Login = () => {
 
     // ADDED: temporary fake users (replace with backend later)
     const users = [
-      { email: 'admin@test.com', password: '1234', role: 'admin' },
-      { email: 'user@test.com', password: 'abcd', role: 'user' },
+      { email: 'admin@gmail.com', password: '1234', role: 'admin' },
+      { email: 'user@gmail.com', password: 'abcd', role: 'user' },
     ]
 
     // ADDED: check credentials
@@ -32,7 +32,7 @@ const Login = () => {
     if (found) {
       //  Save logged-in user in context
       setUser(found)
-      
+
       alert(`Welcome ${found.role}`)
 
       // ADDED: redirect based on role
