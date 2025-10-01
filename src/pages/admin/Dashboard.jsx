@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { products } from '../../assets/assets';
-
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from 'recharts';
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -9,17 +17,19 @@ const Dashboard = () => {
     totalOrders: 0,
     totalRevenue: 0,
     recentOrders: [],
-    topProducts: []
+    topProducts: [],
+    monthlyRevenue: [],
+    usersGrowth: []
   });
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API call
     const fetchStats = async () => {
       setLoading(true);
-      
-      // Mock data - replace with actual API calls
+      const bestSellers = products.filter(p => p.bestseller).slice(0, 5);
+
+      // Mock data
       const mockStats = {
         totalUsers: 1247,
         totalProducts: products.length,
@@ -32,9 +42,17 @@ const Dashboard = () => {
           { id: 4, customer: 'David Brown', amount: 123.75, status: 'completed', date: '2024-01-14' },
           { id: 5, customer: 'Lisa Garcia', amount: 34.99, status: 'pending', date: '2024-01-13' }
         ],
-        topProducts: products.slice(0, 5).map(product => ({
-          ...product,
+        topProducts: bestSellers.map(p => ({
+          ...p,
           sales: Math.floor(Math.random() * 100) + 10
+        })),
+        monthlyRevenue: Array.from({ length: 12 }, (_, i) => ({
+          month: `Month ${i + 1}`,
+          revenue: Math.floor(Math.random() * 5000) + 1000
+        })),
+        usersGrowth: Array.from({ length: 12 }, (_, i) => ({
+          month: `Month ${i + 1}`,
+          users: Math.floor(Math.random() * 200) + 50
         }))
       };
 
@@ -93,37 +111,44 @@ const Dashboard = () => {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard
-          title="Total Users"
-          value={stats.totalUsers.toLocaleString()}
-          icon="👥"
-          color="#ec4899"
-          change={12}
-        />
-        <StatCard
-          title="Total Products"
-          value={stats.totalProducts}
-          icon="🛍️"
-          color="#8b5cf6"
-          change={8}
-        />
-        <StatCard
-          title="Total Orders"
-          value={stats.totalOrders}
-          icon="📦"
-          color="#06b6d4"
-          change={-3}
-        />
-        <StatCard
-          title="Total Revenue"
-          value={`$${stats.totalRevenue.toLocaleString()}`}
-          icon="💰"
-          color="#10b981"
-          change={15}
-        />
+        <StatCard title="Total Users" value={stats.totalUsers.toLocaleString()} icon="👥" color="#ec4899" change={12} />
+        <StatCard title="Total Products" value={stats.totalProducts} icon="🛍️" color="#8b5cf6" change={8} />
+        <StatCard title="Total Orders" value={stats.totalOrders} icon="📦" color="#06b6d4" change={-3} />
+        <StatCard title="Total Revenue" value={`$${stats.totalRevenue.toLocaleString()}`} icon="💰" color="#10b981" change={15} />
       </div>
 
-      {/* Charts and Tables */}
+      {/* Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Monthly Revenue */}
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Monthly Revenue</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={stats.monthlyRevenue}>
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="revenue" stroke="#10b981" strokeWidth={3} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Users Growth */}
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Users Growth</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={stats.usersGrowth}>
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="users" stroke="#ec4899" strokeWidth={3} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Existing Recent Orders and Top Products */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Orders */}
         <div className="bg-white rounded-lg shadow-md p-6">
@@ -177,8 +202,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
-
     </div>
   );
 };
